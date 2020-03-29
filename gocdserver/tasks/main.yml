@@ -1,0 +1,19 @@
+---
+# tasks file for gocdserver
+- name: install gocd
+  become: yes
+  uri:
+    url: https://download.gocd.org/gocd.repo
+    dest: /etc/yum.repos.d/gocd.repo
+
+-  name: yum install gocd
+   become: yes
+   yum: 
+    name: go-server 
+    state: installed
+
+- name: start gocd
+  become: yes
+  service: 
+    name: go-server 
+    state: started

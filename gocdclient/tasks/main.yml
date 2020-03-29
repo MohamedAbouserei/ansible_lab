@@ -1,0 +1,21 @@
+# tasks file for gocdclient
+- name: Remove repository (and clean up left-over metadata)
+  yum_repository:
+    name: gocd.repo
+    state: absent
+- name: install gocd
+  become: yes
+  get_url:
+       url: https://download.gocd.org/gocd.repo
+       dest: /etc/yum.repos.d/gocd.repo
+-  name: yum install gocd
+   become: yes
+   yum: 
+    name: go-agent 
+    state: installed
+
+- name: start gocd
+  become: yes
+  service: 
+    name: go-agent
+    state: started

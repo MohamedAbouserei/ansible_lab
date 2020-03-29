@@ -1,0 +1,8 @@
+---
+
+- hosts: myServers
+  become: yes
+  roles:
+    #- gocdserver
+    #- gocdclient
+      - nexus2
